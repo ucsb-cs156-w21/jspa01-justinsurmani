@@ -11,6 +11,19 @@ export default class Rational {
     this.numerator = Math.trunc(numerator);
     this.denominator = Math.trunc(denominator);
 
+    if (this.denominator === 0) {
+      throw new Error('Error, cannot divide by 0');
+    }
+
+    if (this.numerator < 0 && this.denominator < 0) {
+      this.numerator *= -1;
+      this.denominator *= -1;
+    }
+    else if (this.numerator > 0 && this.denominator < 0) {
+      this.numerator *= -1;
+      this.denominator *= -1;
+    }
+
     if (this.numerator !== 0) {
       const greatestCommonDivisor = gcd(this.numerator, this.denominator);
       this.numerator /= greatestCommonDivisor;
@@ -19,7 +32,7 @@ export default class Rational {
   }
 
   toString() {
-    return "";
+    return "" + this.numerator + "/" + this.denominator;
   }
 
   plus(other) {
@@ -48,12 +61,31 @@ export default class Rational {
   }
 
   times(other) {
-    return 42;
+    Rational.verifyIsRational(other);
+    if(this.numerator === 0 || other.numerator === 0) {
+      return new Rational(0, 1);
+    }
+    
+    this.numerator = this.numerator * other.numerator;
+    this.denominator = this.denominator * other.denominator;
+    return new Rational(this.numerator, this.denominator);
+/*
+    const ratGCD = gcd(this.numerator, this.denominator);
+    const numerator = this.numerator / ratGCD;
+    const denominator = this.denominator/ ratGCD;
+    
+    return new Rational(numerator, denominator); */
   }
 
+    
+
+
   static multiply(first, second) {
-    return 42;
-  }
+    Rational.verifyIsRational(first);
+    Rational.verifyIsRational(second);
+
+    return first.times(second);
+    }
 
   minus(other) {
     return 42;
