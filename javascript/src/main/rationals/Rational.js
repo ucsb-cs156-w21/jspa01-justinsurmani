@@ -65,16 +65,14 @@ export default class Rational {
     if(this.numerator === 0 || other.numerator === 0) {
       return new Rational(0, 1);
     }
+   
+    let numerator = this.numerator * other.numerator;
+    let denominator = this.denominator * other.denominator;
+    const rationalGCD = gcd(numerator, denominator);
+    numerator /= rationalGCD;
+    denominator /= rationalGCD;
     
-    this.numerator = this.numerator * other.numerator;
-    this.denominator = this.denominator * other.denominator;
-    return new Rational(this.numerator, this.denominator);
-/*
-    const ratGCD = gcd(this.numerator, this.denominator);
-    const numerator = this.numerator / ratGCD;
-    const denominator = this.denominator/ ratGCD;
-    
-    return new Rational(numerator, denominator); */
+    return new Rational(numerator, denominator);
   }
 
     
@@ -88,23 +86,38 @@ export default class Rational {
     }
 
   minus(other) {
-    return 42;
+    Rational.verifyIsRational(other);
+    let negativeOne = new Rational(-1, 1);
+    let negativeOther = negativeOne.times(other);
+    
+    return this.plus(negativeOther);
   }
 
   static subtract(first, second) {
-    return 42;
+    Rational.verifyIsRational(first);
+    Rational.verifyIsRational(second);
+
+    return first.minus(second);
   }
 
   reciprocal() {
-    return 42;
+    if(this.numerator === 0) {
+      throw new Error('Error, cannot divide by 0')
+    }
+    return new Rational(this.denominator, this.numerator)
   }
 
   dividedBy(other) {
-    return 42;
+    Rational.verifyIsRational(other);
+    let recip = other.reciprocal();
+    return this.times(recip);
   }
 
   static quotient(first, second) {
-    return 42;
+    Rational.verifyIsRational(first);
+    Rational.verifyIsRational(second);
+
+    return first.dividedBy(second);
   }
 
   static verifyIsRational(object) {
