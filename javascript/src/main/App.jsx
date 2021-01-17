@@ -3,6 +3,7 @@ import "main/App.css";
 import Add from "main/pages/Add";
 import Subtract from "main/pages/Subtract";
 import Multiply from "main/pages/Multiply";
+import Divide from "main/pages/Divide";
 import { Container } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import AppNavbar from "main/components/AppNavbar";
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/add" component={Add} />
           <Route exact path="/subtract" component={Subtract} />
           <Route exact path="/multiply" component={Multiply} />
+          <Route exact path="/divide" component={Divide} />
         </Switch>
       </Container>
       <AppFooter />
