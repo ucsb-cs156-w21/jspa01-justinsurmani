@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
+import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import { LinkContainer } from "react-router-bootstrap";
 
 const AppNavbar = () => {
@@ -17,6 +18,9 @@ const AppNavbar = () => {
         </LinkContainer>
         <LinkContainer to="/multiply">
           <Nav.Link>Multiply</Nav.Link>
+        </LinkContainer>
+        <LinkContainer to="/divide">
+          <Nav.Link>Divide</Nav.Link>
         </LinkContainer>
       </Nav>
     </Navbar>
