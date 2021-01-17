@@ -2,8 +2,13 @@ import Rational from "main/rationals/Rational";
 
 const parseRationalsFromUserInput = (userInput) => {
   const rationals = userInput.map((value) => {
+
     const numerator = parseInt(value.numerator);
     const denominator = parseInt(value.denominator);
+
+    if(isNaN(numerator) || isNaN(denominator)) {
+      throw new Error('Error, invalid non-numeric data type');
+    }
 
     return new Rational(numerator, denominator);
   });
