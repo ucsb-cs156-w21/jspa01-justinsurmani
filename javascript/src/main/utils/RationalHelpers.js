@@ -27,15 +27,28 @@ const addRationalsFromUserInput = (userInput) => {
 };
 
 const subtractRationalsFromUserInput = (userInput) => {
-  return 42;
+  const [firstRational, secondRational] = parseRationalsFromUserInput(userInput);
+  const result = Rational.subtract(firstRational, secondRational);
+
+  return result;
 };
 
 const multiplyRationalsFromUserInput = (userInput) => {
-  return 42;
+  const [firstRational, secondRational] = parseRationalsFromUserInput(userInput);
+  const result = Rational.multiply(firstRational, secondRational);
+
+  return result;
 };
 
 const divideRationalsFromUserInput = (userInput) => {
-  return 42;
+  const [firstRational, secondRational] = parseRationalsFromUserInput(userInput);
+  if(secondRational.numerator === 0) {
+    throw new Error('Error, cannot divide by 0');
+  }
+  
+  const result = Rational.quotient(firstRational, secondRational);
+
+  return result;
 };
 
 export {

@@ -116,6 +116,9 @@ export default class Rational {
   static quotient(first, second) {
     Rational.verifyIsRational(first);
     Rational.verifyIsRational(second);
+    if(second.numerator === 0) {
+      throw new Error('Error, cannot divide by 0')
+    }
 
     return first.dividedBy(second);
   }
